@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.contain {
+    margin:2.5% auto;
+    width: 40%;
+}
+.center {
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+}
+.topright {
+    position: fixed;
+    right: 16px;
+    top: 8px;
+}
+li {
+    color: red;
+}
+</style>
+<body>
+<a class="topright" href="/shows">Home</a>
+    <div class="contain">
+        <h1 class="center">Edit Show {{show.id}}</h1>
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="/shows/{{show.id}}/update" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" id="Title" name="title" placeholder="{{show.title}}">
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="Network">Network</label>
+                    <input type="text" class="form-control" id="Network" name="net" placeholder="{{show.network}}">
+                </div>
+                <div class="col">
+                    <label for="date">Release Date</label>
+                    <input type="date" class="form-control" id="date" name="date" placeholder="{{show.release_date}}">
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea class="form-control" id="Description" rows="3" name="desc" placeholder="{{show.description}}"></textarea>
+            </div>
+            <input class="btn btn-primary center" type="submit" name="submit" value="Update">
+        </form>
+        <a class="center" href="/shows/{{show.id}}">Go To Show</a>
+    </div>
+</body>
+</html>

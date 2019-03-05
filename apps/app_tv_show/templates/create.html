@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    .contain {
+        margin:2.5% auto;
+        width: 40%;
+    }
+    .center {
+        text-align: center;
+        display: block;
+        margin: 0px auto;
+    }
+    a {
+        position: fixed;
+        right: 16px;
+        top: 8px;
+    }
+    li {
+        color: red;
+    }
+</style>
+<body>
+    <a href="/shows">Home</a>
+    <div class="contain">
+        <h1 class="center">Add a New Show</h1>
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+            <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <form action="/shows/create" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title">
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label>Network</label>
+                    <input type="text" class="form-control"  name="net">
+                </div>
+                <div class="col">
+                    <label>Release Date</label>
+                    <input type="date" class="form-control" name="date">
+                </div>
+            </div>
+            <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" rows="3" name="desc"></textarea>
+            </div>
+            <input class="btn btn-primary center" type="submit" name="submit" value="Create">
+        </form> 
+    </div>
+      </body>
+</body>
+</html>
